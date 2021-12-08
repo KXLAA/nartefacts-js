@@ -1,5 +1,9 @@
-import "../styles/globals.scss";
-import { createGlobalStyle } from "styled-components";
+/* eslint-disable react/jsx-props-no-spreading */
+import '../styles/globals.scss';
+import { createGlobalStyle } from 'styled-components';
+import React from 'react';
+import { ApolloProvider } from '@apollo/client';
+import apolloClient from '../lib/apollo';
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
@@ -39,9 +43,9 @@ const GlobalStyle = createGlobalStyle`
 
 export default function App({ Component, pageProps }) {
   return (
-    <>
+    <ApolloProvider client={apolloClient}>
       <GlobalStyle />
       <Component {...pageProps} />
-    </>
+    </ApolloProvider>
   );
 }
