@@ -51,29 +51,8 @@ const ColorBox = styled.div`
 `;
 
 export const Albums = ({ album }) => {
-  console.log(album);
   return (
     <>
-      <Card>
-        <AlbumArt src={album.albumArt} />
-        <AlbumDescContainer>
-          <div>
-            <p>{album.artist.name}</p>
-            <p>{album.title}</p>
-          </div>
-          <Likes>
-            <BsSuitHeartFill style={{ fontSize: "32px" }} />
-            <p>{album.likeCount}</p>
-          </Likes>
-        </AlbumDescContainer>
-
-        <ColorPalette>
-          {album.colors.map((color) => (
-            <ColorBox key={color} bg={color}></ColorBox>
-          ))}
-        </ColorPalette>
-      </Card>
-
       <Card>
         <AlbumArt src={album.albumArt} />
         <AlbumDescContainer>
