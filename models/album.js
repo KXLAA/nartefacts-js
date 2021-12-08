@@ -20,6 +20,4 @@ albumSchema.set('toJSON', {
   },
 });
 
-const Album = mongoose.model('Album', albumSchema);
-
-export default Album;
+export default mongoose.models.Album || mongoose.model('Album', albumSchema);

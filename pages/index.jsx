@@ -1,12 +1,36 @@
 import React from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
+import { gql, useQuery } from '@apollo/client';
 import { MainLayout, HomePageGrid } from '../components/common/Layout';
 import { Header } from '../components/common/Header';
 import { Albums } from '../components/common/Albums';
-import { AlbumData } from '../sampleData';
+
+const AllAlbumQuery = gql`
+  query {
+    albumListForHome {
+      id
+      title
+      type
+      artist {
+        name
+        photoURL
+      }
+      albumArt
+      urls {
+        spotify
+        apple
+      }
+      colors
+      likeCount
+    }
+  }
+`;
 
 export default function Home() {
+  const { data, error, loading } = useQuery(AllAlbumQuery);
+  if (loading) return <p>Loading....</p>;
+  if (error) return <p>Ooops, something went wrong {error.message}</p>;
+
   return (
     <MainLayout>
       <Head>
@@ -21,7 +45,7 @@ export default function Home() {
 
       <main>
         <HomePageGrid>
-          {AlbumData.map((album) => (
+          {data?.albumListForHome?.map((album) => (
             <Albums key={album.id} album={album} />
           ))}
         </HomePageGrid>

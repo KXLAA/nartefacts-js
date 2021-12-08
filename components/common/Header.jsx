@@ -1,7 +1,5 @@
-import React from "react";
-import Image from "next/image";
-import styles from "../../styles/utils.module.scss";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const Logo = styled.img`
   width: 100%;
@@ -45,20 +43,18 @@ const Button = styled.a`
   }
 `;
 
-export const Header = () => {
-  return (
-    <header>
-      <Logo
-        src="https://ucarecdn.com/c41f4ab9-8e44-40dd-8549-8f3d01f14982/nartefactsb.svg"
-        alt="nartefacts logo"
-      />
-      <Description>
-        A COLLECTION OF COLOR PALLETTES INSPIRED BY AFRICAN MUSIC
-      </Description>
+export const Header = () => (
+  <header>
+    <Logo
+      src="https://ucarecdn.com/c41f4ab9-8e44-40dd-8549-8f3d01f14982/nartefactsb.svg"
+      alt="nartefacts logo"
+    />
+    <Description>A COLLECTION OF COLOR PALLETTES INSPIRED BY AFRICAN MUSIC</Description>
 
-      <ButtonContainer>
-        <Button>YOUR LIKES</Button>
-      </ButtonContainer>
-    </header>
-  );
-};
+    <ButtonContainer>
+      <Button>YOUR LIKES</Button>
+    </ButtonContainer>
+  </header>
+);
+
+export default Header;

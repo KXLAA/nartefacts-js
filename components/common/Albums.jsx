@@ -1,6 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { BsSuitHeartFill } from "react-icons/bs";
+/* eslint-disable react/prop-types */
+import React from 'react';
+import styled from 'styled-components';
+import { BsSuitHeartFill } from 'react-icons/bs';
 
 const Card = styled.div`
   border-right: 8px solid black;
@@ -50,28 +51,28 @@ const ColorBox = styled.div`
   background-color: ${(props) => props.bg};
 `;
 
-export const Albums = ({ album }) => {
-  return (
-    <>
-      <Card>
-        <AlbumArt src={album.albumArt} />
-        <AlbumDescContainer>
-          <div>
-            <p>{album.artist.name}</p>
-            <p>{album.title}</p>
-          </div>
-          <Likes>
-            <BsSuitHeartFill style={{ fontSize: "32px" }} />
-            <p>{album.likeCount}</p>
-          </Likes>
-        </AlbumDescContainer>
+export const Albums = ({ album }) => (
+  <>
+    <Card>
+      <AlbumArt src={album.albumArt} />
+      <AlbumDescContainer>
+        <div>
+          <p>{album.artist.name}</p>
+          <p>{album.title}</p>
+        </div>
+        <Likes>
+          <BsSuitHeartFill style={{ fontSize: '32px' }} />
+          <p>{album.likeCount}</p>
+        </Likes>
+      </AlbumDescContainer>
 
-        <ColorPalette>
-          {album.colors.map((color) => (
-            <ColorBox key={color} bg={color}></ColorBox>
-          ))}
-        </ColorPalette>
-      </Card>
-    </>
-  );
-};
+      <ColorPalette>
+        {album.colors.map((color) => (
+          <ColorBox key={color} bg={color} />
+        ))}
+      </ColorPalette>
+    </Card>
+  </>
+);
+
+export default Albums;

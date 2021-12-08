@@ -20,6 +20,7 @@ export default cors(async (req, res) => {
 
   await startServer;
   await dbConnect();
+  console.log('connected to mongoDb');
   await apolloServer.createHandler({
     path: '/api/graphql',
   })(req, res);
