@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BsSuitHeartFill } from 'react-icons/bs';
+import Link from 'next/link';
 
 const Card = styled.div`
   border-right: 8px solid black;
@@ -13,6 +14,7 @@ const Card = styled.div`
 
 const AlbumArt = styled.img`
   width: 100%;
+  cursor: pointer;
 `;
 
 const AlbumDescContainer = styled.div`
@@ -51,28 +53,50 @@ const ColorBox = styled.div`
   background-color: ${(props) => props.bg};
 `;
 
-export const Albums = ({ album }) => (
-  <>
-    <Card>
-      <AlbumArt src={album.albumArt} />
-      <AlbumDescContainer>
-        <div>
-          <p>{album.artist.name}</p>
-          <p>{album.title}</p>
-        </div>
-        <Likes>
-          <BsSuitHeartFill style={{ fontSize: '32px' }} />
-          <p>{album.likeCount}</p>
-        </Likes>
-      </AlbumDescContainer>
+export const Albums = ({ album, likedAlbums, updateLikedAlbums }) => {
+  const [isLiked, updateLike] = useState(false);
 
-      <ColorPalette>
-        {album.colors.map((color) => (
-          <ColorBox key={color} bg={color} />
-        ))}
-      </ColorPalette>
-    </Card>
-  </>
-);
+  const handleLike = () => {
+    const currentLikedAlbums = likedAlbums;
+    if (!isLiked) {
+      updateLike(true);
+      if (!currentLikedAlbums.includes(album)) updateLikedAlbums([...currentLikedAlbums, album]);
+    } else {
+      updateLike(false);
+      if (currentLikedAlbums.includes(album))
+        updateLikedAlbums(currentLikedAlbums.filter((al) => al !== album));
+    }
+    console.log(isLiked);
+    console.log(likedAlbums);
+  };
+
+  const likeColor = isLiked ? 'red' : 'black';
+
+  return (
+    <>
+      <Card>
+        <Link href={`/albums/${album.id}`}>
+          <AlbumArt src={album.albumArt} />
+        </Link>
+        <AlbumDescContainer>
+          <div>
+            <p>{album.artist.name}</p>
+            <p>{album.title}</p>
+          </div>
+          <Likes>
+            <BsSuitHeartFill onClick={handleLike} style={{ fontSize: '32px', color: likeColor }} />
+            <p>{album.likeCount}</p>
+          </Likes>
+        </AlbumDescContainer>
+
+        <ColorPalette>
+          {album.colors.map((color) => (
+            <ColorBox key={color} bg={color} />
+          ))}
+        </ColorPalette>
+      </Card>
+    </>
+  );
+};
 
 export default Albums;

@@ -4,6 +4,7 @@ import { createGlobalStyle } from 'styled-components';
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
 import apolloClient from '../lib/apollo';
+import { AppWrapper } from '../context/state';
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
@@ -43,9 +44,11 @@ const GlobalStyle = createGlobalStyle`
 
 export default function App({ Component, pageProps }) {
   return (
-    <ApolloProvider client={apolloClient}>
-      <GlobalStyle />
-      <Component {...pageProps} />
-    </ApolloProvider>
+    <AppWrapper>
+      <ApolloProvider client={apolloClient}>
+        <GlobalStyle />
+        <Component {...pageProps} />
+      </ApolloProvider>
+    </AppWrapper>
   );
 }
