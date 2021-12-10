@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import { gql, useQuery } from '@apollo/client';
 import { MainLayout, HomePageGrid } from '../components/common/Layout';
-import { Header } from '../components/common/Header';
-import { Albums } from '../components/common/Albums';
+import { Header } from '../components/albums/Header';
+import { Albums } from '../components/albums/Albums';
 import { useAppContext } from '../context/state';
 
 const AllAlbumQuery = gql`

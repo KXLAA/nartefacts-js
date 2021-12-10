@@ -75,7 +75,7 @@ export const Albums = ({ album, likedAlbums, updateLikedAlbums }) => {
   return (
     <>
       <Card>
-        <Link href={`/albums/${album.id}`}>
+        <Link href={`/album/${album.id}`}>
           <AlbumArt src={album.albumArt} />
         </Link>
         <AlbumDescContainer>
