@@ -5,7 +5,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { gql, useQuery } from '@apollo/client';
 
-export const AlbumQuery = gql`
+const GET_ALBUM_FOR_PAGE = gql`
   query AlbumForPage($albumForPageId: ID!) {
     albumForPage(id: $albumForPageId) {
       id
@@ -29,10 +29,11 @@ export const AlbumQuery = gql`
 export default function Album({ albumForPageId }) {
   const router = useRouter();
   const { id } = router.query;
-  albumForPageId = JSON.stringify(id);
+  albumForPageId = id;
 
-  const { loading, error, data } = useQuery(AlbumQuery, {
+  const { loading, error, data } = useQuery(GET_ALBUM_FOR_PAGE, {
     variables: { albumForPageId },
+    skip: !router.isReady,
   });
 
   console.log(data);
