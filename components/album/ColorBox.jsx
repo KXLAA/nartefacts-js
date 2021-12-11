@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import React, { useState, useEffect } from 'react';
 
@@ -40,3 +41,7 @@ const ColorBox = ({ color }) => {
 };
 
 export default ColorBox;
+
+ColorBox.propTypes = {
+  color: PropTypes.string.isRequired,
+};

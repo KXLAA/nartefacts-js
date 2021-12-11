@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
 import { Button, ButtonContainer } from '../common/Ui';
+import { useAppContext } from '../../context/state';
 
 const Logo = styled.img`
   width: 100%;
@@ -17,17 +19,47 @@ const Description = styled.h1`
   font-weight: 900;
 `;
 
-export const Header = () => (
-  <header>
-    <Logo
-      src="https://ucarecdn.com/c41f4ab9-8e44-40dd-8549-8f3d01f14982/nartefactsb.svg"
-      alt="nartefacts logo"
-    />
+const Counter = styled.div`
+  background-color: red;
+  width: 70px;
+  aspect-ratio: 1/1;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  right: 450px;
+  bottom: 90px;
+  z-index: 2;
 
-    <ButtonContainer>
-      <Button>YOUR LIKES</Button>
-    </ButtonContainer>
-  </header>
-);
+  p {
+    color: white;
+    font-size: 32px;
+  }
+`;
+
+export const Header = () => {
+  const { likedAlbums, updateLikedAlbums } = useAppContext();
+
+  return (
+    <header>
+      <Logo
+        src="https://ucarecdn.com/c41f4ab9-8e44-40dd-8549-8f3d01f14982/nartefactsb.svg"
+        alt="nartefacts logo"
+      />
+
+      <ButtonContainer>
+        {likedAlbums.length >= 1 && (
+          <Counter>
+            <p>{likedAlbums.length}</p>
+          </Counter>
+        )}
+        <Link href="/likes">
+          <Button>YOUR LIKES</Button>
+        </Link>
+      </ButtonContainer>
+    </header>
+  );
+};
 
 export default Header;

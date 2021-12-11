@@ -1,9 +1,10 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BsSuitHeartFill } from 'react-icons/bs';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 import ColorBox from './ColorBox';
+import { useAppContext } from '../../context/state';
 
 const Card = styled.div`
   border-right: 8px solid black;
@@ -40,6 +41,7 @@ const Likes = styled.div`
   justify-content: center;
   align-items: center;
   gap: 16px;
+  cursor: pointer;
 `;
 
 const ColorPalette = styled.div`
@@ -48,24 +50,24 @@ const ColorPalette = styled.div`
   gap: 8px;
 `;
 
-export const Albums = ({ album, likedAlbums, updateLikedAlbums }) => {
+const Albums = ({ album }) => {
   const [isLiked, updateLike] = useState(false);
+  const [likeColor, setLikeColor] = useState('black');
+  const { likedAlbums, updateLikedAlbums } = useAppContext();
 
   const handleLike = () => {
-    const currentLikedAlbums = likedAlbums;
+    // const currentLikedAlbums = likedAlbums;
+
     if (!isLiked) {
       updateLike(true);
-      if (!currentLikedAlbums.includes(album)) updateLikedAlbums([...currentLikedAlbums, album]);
+      setLikeColor('red');
+      if (!likedAlbums.includes(album)) updateLikedAlbums([...likedAlbums, album]);
     } else {
       updateLike(false);
-      if (currentLikedAlbums.includes(album))
-        updateLikedAlbums(currentLikedAlbums.filter((al) => al !== album));
+      setLikeColor('black');
+      if (likedAlbums.includes(album)) updateLikedAlbums(likedAlbums.filter((al) => al !== album));
     }
-    console.log(isLiked);
-    console.log(likedAlbums);
   };
-
-  const likeColor = isLiked ? 'red' : 'black';
 
   return (
     <>
@@ -95,3 +97,21 @@ export const Albums = ({ album, likedAlbums, updateLikedAlbums }) => {
 };
 
 export default Albums;
+
+Albums.propTypes = {
+  album: PropTypes.shape({
+    id: PropTypes.string,
+    albumArt: PropTypes.string,
+    title: PropTypes.string,
+    likeCount: PropTypes.number,
+    colors: PropTypes.arrayOf(PropTypes.string),
+    artist: PropTypes.shape({
+      photoURL: PropTypes.string,
+      name: PropTypes.string,
+    }),
+    urls: PropTypes.shape({
+      apple: PropTypes.string,
+      spotify: PropTypes.string,
+    }),
+  }).isRequired,
+};

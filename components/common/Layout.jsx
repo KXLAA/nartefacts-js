@@ -11,5 +11,6 @@ export const HomePageGrid = styled.section`
   border: 8px solid black;
   border-right: 0px;
   border-bottom: 0px;
+  border-bottom: 0px;
   margin-top: 16px;
 `;

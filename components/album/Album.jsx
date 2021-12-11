@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { BsSuitHeartFill } from 'react-icons/bs';
+import PropTypes from 'prop-types';
 import { Button } from '../common/Ui';
 import ColorBox from './ColorBox';
 
@@ -98,44 +99,57 @@ const Btn = styled(Button)`
   }
 `;
 
-const Album = ({ album }) => {
-  console.log(album);
-  return (
-    <Container>
-      <AlbumContainer>
-        <Image src={album?.albumArt} alt="Picture of the author" />
-        <ColorPalette>
-          {album?.colors?.map((color) => (
-            <ColorBox key={color} color={color} />
-          ))}
-        </ColorPalette>
-      </AlbumContainer>
+const Album = ({ album }) => (
+  <Container>
+    <AlbumContainer>
+      <Image src={album?.albumArt} alt="Picture of the author" />
+      <ColorPalette>
+        {album?.colors?.map((color) => (
+          <ColorBox key={color} color={color} />
+        ))}
+      </ColorPalette>
+    </AlbumContainer>
 
-      <Info>
-        <ArtistImage src={album?.artist?.photoURL} alt="Picture of the author" />
+    <Info>
+      <ArtistImage src={album?.artist?.photoURL} alt="Picture of the author" />
 
-        <Detail>
-          <AlbumDetails>
-            <h1>{album?.artist?.name}</h1>
-            <h2>{album?.title} </h2>
-          </AlbumDetails>
+      <Detail>
+        <AlbumDetails>
+          <h1>{album?.artist?.name}</h1>
+          <h2>{album?.title} </h2>
+        </AlbumDetails>
 
-          <Like>
-            <BsSuitHeartFill style={{ fontSize: '32px' }} />
-            <p>{album?.likeCount}</p>
-          </Like>
-        </Detail>
-      </Info>
-      <ButtonContainer>
-        <Btn href={album?.urls?.apple} target="_blank">
-          APPLE MUSIC
-        </Btn>
-        <Btn href={album?.urls?.spotify} target="_blank">
-          SPOTIFY
-        </Btn>
-      </ButtonContainer>
-    </Container>
-  );
-};
+        <Like>
+          <p>{album?.likeCount}</p>
+        </Like>
+      </Detail>
+    </Info>
+    <ButtonContainer>
+      <Btn href={album?.urls?.apple} target="_blank">
+        APPLE MUSIC
+      </Btn>
+      <Btn href={album?.urls?.spotify} target="_blank">
+        SPOTIFY
+      </Btn>
+    </ButtonContainer>
+  </Container>
+);
 
 export default Album;
+
+Album.propTypes = {
+  album: PropTypes.shape({
+    albumArt: PropTypes.string,
+    title: PropTypes.string,
+    likeCount: PropTypes.number,
+    colors: PropTypes.arrayOf(PropTypes.string),
+    artist: PropTypes.shape({
+      photoURL: PropTypes.string,
+      name: PropTypes.string,
+    }),
+    urls: PropTypes.shape({
+      apple: PropTypes.string,
+      spotify: PropTypes.string,
+    }),
+  }).isRequired,
+};
