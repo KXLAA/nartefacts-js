@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { gql, useMutation } from '@apollo/client';
 import ColorBox from './ColorBox';
 import { useAppContext } from '../../context/state';
+import device from '../common/MediaQueries';
 
 const ADD_TO_LIKE = gql`
   mutation Mutation($addToLikeId: ID!) {
@@ -31,6 +32,11 @@ const Card = styled.div`
   padding-bottom: 32px;
   padding-top: 32px;
   border-bottom: 8px solid black;
+
+  @media ${device.tablet} {
+    padding: 12px;
+    border-width: 6px;
+  }
 `;
 
 const AlbumArt = styled.img`
@@ -72,6 +78,11 @@ const ColorPalette = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
+
+  @media ${device.mobile} {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const Albums = ({ album }) => {

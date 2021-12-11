@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-
 import React, { useState, useEffect } from 'react';
+import device from '../common/MediaQueries';
 
 const Box = styled.div`
   width: 100%;
@@ -9,8 +9,8 @@ const Box = styled.div`
   cursor: pointer;
   transition: all 0.3s ease;
 
-  &:hover {
-    filter: brightness(150%);
+  @media ${device.mobile} {
+    aspect-ratio: 3/1;
   }
 
   p {

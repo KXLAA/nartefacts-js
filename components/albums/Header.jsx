@@ -11,14 +11,6 @@ const Logo = styled.img`
   margin-bottom: 16px;
 `;
 
-const Description = styled.h1`
-  font-size: 40px;
-  line-height: 56px;
-  width: 40%;
-  max-width: 560px;
-  font-weight: 900;
-`;
-
 const Counter = styled.div`
   background-color: red;
   width: 70px;
