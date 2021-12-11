@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BsSuitHeartFill } from 'react-icons/bs';
 import Link from 'next/link';
+import ColorBox from './ColorBox';
 
 const Card = styled.div`
   border-right: 8px solid black;
@@ -47,12 +48,6 @@ const ColorPalette = styled.div`
   gap: 8px;
 `;
 
-const ColorBox = styled.div`
-  width: 100%;
-  aspect-ratio: 1/1;
-  background-color: ${(props) => props.bg};
-`;
-
 export const Albums = ({ album, likedAlbums, updateLikedAlbums }) => {
   const [isLiked, updateLike] = useState(false);
 
@@ -91,7 +86,7 @@ export const Albums = ({ album, likedAlbums, updateLikedAlbums }) => {
 
         <ColorPalette>
           {album.colors.map((color) => (
-            <ColorBox key={color} bg={color} />
+            <ColorBox color={color} key={color} bg={color} />
           ))}
         </ColorPalette>
       </Card>

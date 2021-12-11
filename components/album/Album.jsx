@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { BsSuitHeartFill } from 'react-icons/bs';
 import { Button } from '../common/Ui';
+import ColorBox from './ColorBox';
 
 const Container = styled.section`
   border: 8px solid black;
@@ -25,11 +26,6 @@ const ColorPalette = styled.div`
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
   width: 50%;
-`;
-
-const ColorBox = styled.div`
-  width: 100%;
-  background-color: ${(props) => props.bg};
 `;
 
 const Info = styled.div`
@@ -110,7 +106,7 @@ const Album = ({ album }) => {
         <Image src={album?.albumArt} alt="Picture of the author" />
         <ColorPalette>
           {album?.colors?.map((color) => (
-            <ColorBox key={color} bg={color} />
+            <ColorBox key={color} color={color} />
           ))}
         </ColorPalette>
       </AlbumContainer>

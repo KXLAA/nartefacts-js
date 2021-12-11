@@ -6,7 +6,7 @@ import { Header } from '../components/albums/Header';
 import { Albums } from '../components/albums/Albums';
 import { useAppContext } from '../context/state';
 
-const AllAlbumQuery = gql`
+const GET_ALBUM_LIST_FOR_HOME = gql`
   query AlbumForPage {
     albumListForHome {
       id
@@ -29,7 +29,7 @@ const AllAlbumQuery = gql`
 
 export default function Home() {
   const [likedAlbums, updateLikedAlbums] = useState([]);
-  const { data, error, loading } = useQuery(AllAlbumQuery);
+  const { data, error, loading } = useQuery(GET_ALBUM_LIST_FOR_HOME);
   if (loading) return <p>Loading....</p>;
   if (error) return <p>Ooops, something went wrong {error.message}</p>;
 
