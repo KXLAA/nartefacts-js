@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { Button, ButtonContainer } from '../common/Ui';
-import { useAppContext } from '../../context/state';
 
 const Logo = styled.img`
   width: 100%;
