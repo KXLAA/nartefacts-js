@@ -11,6 +11,7 @@ const ADD_TO_LIKE = gql`
   mutation Mutation($addToLikeId: ID!) {
     addToLike(id: $addToLikeId) {
       likeCount
+      id
     }
   }
 `;
@@ -19,6 +20,7 @@ const REMOVE_FROM_LIKE = gql`
   mutation Mutation($removeFromLikeId: ID!) {
     removeFromLike(id: $removeFromLikeId) {
       likeCount
+      id
     }
   }
 `;
@@ -92,7 +94,6 @@ const Albums = ({ album }) => {
       updateLike((prevCheck) => !prevCheck);
       if (likedAlbums.includes(album)) updateLikedAlbums(likedAlbums.filter((al) => al !== album));
       removeFromLike();
-      localStorage.removeItem('album');
     }
   };
 
