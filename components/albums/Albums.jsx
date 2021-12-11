@@ -3,8 +3,25 @@ import styled from 'styled-components';
 import { BsSuitHeartFill } from 'react-icons/bs';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
+import { gql, useMutation } from '@apollo/client';
 import ColorBox from './ColorBox';
 import { useAppContext } from '../../context/state';
+
+const ADD_TO_LIKE = gql`
+  mutation Mutation($addToLikeId: ID!) {
+    addToLike(id: $addToLikeId) {
+      likeCount
+    }
+  }
+`;
+
+const REMOVE_FROM_LIKE = gql`
+  mutation Mutation($removeFromLikeId: ID!) {
+    removeFromLike(id: $removeFromLikeId) {
+      likeCount
+    }
+  }
+`;
 
 const Card = styled.div`
   border-right: 8px solid black;
@@ -17,6 +34,11 @@ const Card = styled.div`
 const AlbumArt = styled.img`
   width: 100%;
   cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    filter: brightness(20%);
+  }
 `;
 
 const AlbumDescContainer = styled.div`
@@ -51,21 +73,26 @@ const ColorPalette = styled.div`
 `;
 
 const Albums = ({ album }) => {
-  const [isLiked, updateLike] = useState(false);
-  const [likeColor, setLikeColor] = useState('black');
-  const { likedAlbums, updateLikedAlbums } = useAppContext();
+  const { likedAlbums, updateLikedAlbums, isLiked, updateLike } = useAppContext();
+
+  const [addToLike] = useMutation(ADD_TO_LIKE, {
+    variables: { addToLikeId: album.id },
+  });
+
+  const [removeFromLike, { data }] = useMutation(REMOVE_FROM_LIKE, {
+    variables: { removeFromLikeId: album.id },
+  });
 
   const handleLike = () => {
-    // const currentLikedAlbums = likedAlbums;
-
     if (!isLiked) {
-      updateLike(true);
-      setLikeColor('red');
+      updateLike((prevCheck) => !prevCheck);
       if (!likedAlbums.includes(album)) updateLikedAlbums([...likedAlbums, album]);
+      addToLike();
     } else {
-      updateLike(false);
-      setLikeColor('black');
+      updateLike((prevCheck) => !prevCheck);
       if (likedAlbums.includes(album)) updateLikedAlbums(likedAlbums.filter((al) => al !== album));
+      removeFromLike();
+      localStorage.removeItem('album');
     }
   };
 
@@ -80,8 +107,10 @@ const Albums = ({ album }) => {
             <p>{album.artist.name}</p>
             <p>{album.title}</p>
           </div>
-          <Likes>
-            <BsSuitHeartFill onClick={handleLike} style={{ fontSize: '32px', color: likeColor }} />
+          <Likes onClick={handleLike}>
+            <BsSuitHeartFill
+              style={{ fontSize: '32px', color: !likedAlbums?.includes(album) ? 'black' : 'red' }}
+            />
             <p>{album.likeCount}</p>
           </Likes>
         </AlbumDescContainer>

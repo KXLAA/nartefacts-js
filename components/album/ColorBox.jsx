@@ -7,6 +7,10 @@ const Box = styled.div`
   width: 100%;
   background-color: ${(props) => props.bg};
   cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    filter: brightness(150%);
+  }
 
   p {
     color: white;

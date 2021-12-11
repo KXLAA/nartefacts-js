@@ -25,24 +25,20 @@ const Container = styled(ButtonContainer)`
   gap: 24px;
 `;
 
-export const Header = () => {
-  const { likedAlbums, updateLikedAlbums } = useAppContext();
+const Header = () => (
+  <header>
+    <Logo
+      src="https://ucarecdn.com/c41f4ab9-8e44-40dd-8549-8f3d01f14982/nartefactsb.svg"
+      alt="nartefacts logo"
+    />
 
-  return (
-    <header>
-      <Logo
-        src="https://ucarecdn.com/c41f4ab9-8e44-40dd-8549-8f3d01f14982/nartefactsb.svg"
-        alt="nartefacts logo"
-      />
-
-      <Container>
-        <Link href="/">
-          <Button>BACK</Button>
-        </Link>
-        <LikesTxt>YOUR LIKES</LikesTxt>
-      </Container>
-    </header>
-  );
-};
+    <Container>
+      <Link href="/">
+        <Button>BACK</Button>
+      </Link>
+      <LikesTxt>YOUR LIKES</LikesTxt>
+    </Container>
+  </header>
+);
 
 export default Header;
