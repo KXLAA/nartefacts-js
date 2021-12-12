@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppContext } from '../../context/state';
 import { MainLayout, HomePageGrid } from '../../components/common/Layout';
-import Albums from '../../components/albums/Albums';
+import Albums from '../../components/likes/Albums';
 import Header from '../../components/likes/Header';
 
 const Favorites = () => {

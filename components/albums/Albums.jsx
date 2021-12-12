@@ -86,25 +86,30 @@ const ColorPalette = styled.div`
 `;
 
 const Albums = ({ album }) => {
-  const { likedAlbums, updateLikedAlbums, isLiked, updateLike } = useAppContext();
+  const { likedAlbums, updateLikedAlbums } = useAppContext();
+  const [isLiked, updateLike] = useState(false);
+
+  console.log(isLiked);
 
   const [addToLike] = useMutation(ADD_TO_LIKE, {
     variables: { addToLikeId: album.id },
   });
 
-  const [removeFromLike, { data }] = useMutation(REMOVE_FROM_LIKE, {
+  const [removeFromLike] = useMutation(REMOVE_FROM_LIKE, {
     variables: { removeFromLikeId: album.id },
   });
 
   const handleLike = () => {
+    const currentLikedAlbums = likedAlbums;
     if (!isLiked) {
-      updateLike((prevCheck) => !prevCheck);
-      if (!likedAlbums.includes(album)) updateLikedAlbums([...likedAlbums, album]);
+      if (!currentLikedAlbums.includes(album)) updateLikedAlbums([...currentLikedAlbums, album]);
       addToLike();
+      updateLike((prevState) => !prevState);
     } else {
-      updateLike((prevCheck) => !prevCheck);
-      if (likedAlbums.includes(album)) updateLikedAlbums(likedAlbums.filter((al) => al !== album));
+      if (currentLikedAlbums.some((al) => al.id === album.id))
+        updateLikedAlbums(currentLikedAlbums.filter((al) => al.id !== album.id));
       removeFromLike();
+      updateLike((prevState) => !prevState);
     }
   };
 
@@ -119,9 +124,10 @@ const Albums = ({ album }) => {
             <p>{album.artist.name}</p>
             <p>{album.title}</p>
           </div>
-          <Likes onClick={handleLike}>
+          <Likes>
             <BsSuitHeartFill
-              style={{ fontSize: '32px', color: !likedAlbums?.includes(album) ? 'black' : 'red' }}
+              onClick={handleLike}
+              style={{ fontSize: '32px', color: isLiked ? 'red' : 'black' }}
             />
             <p>{album.likeCount}</p>
           </Likes>
