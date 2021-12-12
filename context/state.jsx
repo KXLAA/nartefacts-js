@@ -1,26 +1,38 @@
-import React, { createContext, useContext, useState } from 'react';
-import PropTypes from 'prop-types';
+/* eslint-disable no-undef */
+/* eslint-disable no-return-assign */
+/* eslint-disable react/prop-types */
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AppContext = createContext();
 
+const getLocalStorage = () => {
+  let album;
+  if (typeof window !== 'undefined') {
+    album = localStorage.getItem('album');
+    if (album) {
+      return (album = JSON.parse(localStorage.getItem('album')));
+    }
+    return [];
+  }
+  return album;
+};
+
 export function AppWrapper({ children }) {
-  const [likedAlbums, updateLikedAlbums] = useState([]);
-  const [likeColor, setLikeColor] = useState('black');
+  const [likedAlbums, updateLikedAlbums] = useState(getLocalStorage());
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('album', JSON.stringify(likedAlbums));
+    }
+  }, [likedAlbums]);
 
   const sharedState = {
     likedAlbums: likedAlbums,
     updateLikedAlbums: updateLikedAlbums,
-    likeColor: likeColor,
-    setLikeColor: setLikeColor,
   };
-
   return <AppContext.Provider value={sharedState}>{children}</AppContext.Provider>;
 }
 
 export function useAppContext() {
   return useContext(AppContext);
 }
-
-AppWrapper.propTypes = {
-  children: PropTypes.object.isRequired,
-};

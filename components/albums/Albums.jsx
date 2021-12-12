@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BsSuitHeartFill } from 'react-icons/bs';
@@ -89,8 +90,6 @@ const Albums = ({ album }) => {
   const { likedAlbums, updateLikedAlbums } = useAppContext();
   const [isLiked, updateLike] = useState(false);
 
-  console.log(isLiked);
-
   const [addToLike] = useMutation(ADD_TO_LIKE, {
     variables: { addToLikeId: album.id },
   });
@@ -100,18 +99,19 @@ const Albums = ({ album }) => {
   });
 
   const handleLike = () => {
-    const currentLikedAlbums = likedAlbums;
     if (!isLiked) {
-      if (!currentLikedAlbums.includes(album)) updateLikedAlbums([...currentLikedAlbums, album]);
+      if (!likedAlbums.includes(album)) updateLikedAlbums([...likedAlbums, album]);
       addToLike();
       updateLike((prevState) => !prevState);
     } else {
-      if (currentLikedAlbums.some((al) => al.id === album.id))
-        updateLikedAlbums(currentLikedAlbums.filter((al) => al.id !== album.id));
+      if (likedAlbums?.some((al) => al.id === album.id))
+        updateLikedAlbums(likedAlbums.filter((al) => al.id !== album.id));
       removeFromLike();
       updateLike((prevState) => !prevState);
     }
   };
+
+  const liked = likedAlbums.some((al) => al.id === album.id) ? 'red' : 'black';
 
   return (
     <>
@@ -124,11 +124,9 @@ const Albums = ({ album }) => {
             <p>{album.artist.name}</p>
             <p>{album.title}</p>
           </div>
+
           <Likes>
-            <BsSuitHeartFill
-              onClick={handleLike}
-              style={{ fontSize: '32px', color: isLiked ? 'red' : 'black' }}
-            />
+            <BsSuitHeartFill onClick={handleLike} style={{ fontSize: '32px', color: liked }} />
             <p>{album.likeCount}</p>
           </Likes>
         </AlbumDescContainer>

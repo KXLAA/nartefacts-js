@@ -50,9 +50,9 @@ export const Header = () => {
       <Description>A COLLECTION OF COLOR PALLETTES INSPIRED BY AFRICAN MUSIC</Description>
 
       <ButtonContainer>
-        {likedAlbums.length >= 1 && (
+        {likedAlbums?.length >= 1 && (
           <Counter>
-            <p>{likedAlbums.length}</p>
+            <p>{likedAlbums?.length}</p>
           </Counter>
         )}
         <Link href="/likes">

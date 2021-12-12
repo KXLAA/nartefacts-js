@@ -33,6 +33,7 @@ export default function AlbumDetail({ albumForPageId }) {
   const router = useRouter();
   const { id } = router.query;
   albumForPageId = id;
+  console.log(typeof id);
 
   const { loading, error, data } = useQuery(GET_ALBUM_FOR_PAGE, {
     variables: { albumForPageId },

@@ -4,6 +4,7 @@ const typeDefs = gql`
   type Query {
     albumListForHome: [Album!]!
     albumForPage(id: ID!): Album!
+    nextAlbum(id: ID!): Album!
   }
   "Album"
   type Album {
