@@ -16,7 +16,7 @@ export const HomePageGrid = styled.section`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border: 8px solid black;
+  border: 8px solid;
   border-right: 0px;
   border-bottom: 0px;
   margin-top: 16px;
@@ -28,5 +28,9 @@ export const HomePageGrid = styled.section`
   @media ${device.tablet} {
     display: flex;
     flex-direction: column;
+  }
+
+  @media ${device.mobile} {
+    border-width: 6px;
   }
 `;

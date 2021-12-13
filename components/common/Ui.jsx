@@ -1,4 +1,6 @@
+/* eslint-disable import/no-named-as-default */
 import styled from 'styled-components';
+import device from './MediaQueries';
 
 export const ButtonContainer = styled.div`
   display: flex;
@@ -13,23 +15,36 @@ export const Button = styled.a`
   display: inline-block;
   cursor: pointer;
   padding: 14px 48px;
-  border: 8px solid black;
+  border: 8px solid;
   text-align: center;
   transition: all 0.3s ease;
 
   &:hover {
     background: black;
-    color: white;
+    background-color: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
     transform: translateX(0rem) translateY(-0.3125rem);
   }
 
   &:active {
     transform: translateX(0rem) translateY(0.125rem);
   }
+
+  @media ${device.tablet} {
+    width: 100%;
+  }
+
+  @media ${device.mobile} {
+    border-width: 6px;
+    font-size: 48px;
+    line-height: 1.5;
+    padding: 8px 16px;
+  }
 `;
 
 export const Toggle = styled.div`
-  border: 8px solid #000000;
+  border: 8px solid;
   border-radius: 100%;
   width: 150px;
   height: 150px;
@@ -38,7 +53,9 @@ export const Toggle = styled.div`
 
   &:hover {
     background: black;
-    color: white;
+    background-color: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
     transform: translateX(0rem) translateY(-0.3125rem);
   }
 

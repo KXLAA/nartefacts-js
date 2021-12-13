@@ -8,12 +8,6 @@ const resolvers = {
       const album = await Album.findById(args.id);
       return album;
     },
-    nextAlbum: async (_, args, { Album }) => {
-      const album = await Album.find({ _id: { $gt: args.id } })
-        .sort({ _id: 1 })
-        .limit(1);
-      return album;
-    },
   },
 
   Mutation: {

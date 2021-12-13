@@ -14,8 +14,8 @@ const Box = styled.div`
   }
 
   p {
-    color: white;
-    background-color: black;
+    color: var(--bg);
+    background-color: var(--text);
     padding: 4px;
     text-align: center;
   }

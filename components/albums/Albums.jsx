@@ -28,11 +28,11 @@ const REMOVE_FROM_LIKE = gql`
 `;
 
 const Card = styled.div`
-  border-right: 8px solid black;
+  border-right: 8px solid;
   padding: 24px;
   padding-bottom: 32px;
   padding-top: 32px;
-  border-bottom: 8px solid black;
+  border-bottom: 8px solid;
 
   @media ${device.tablet} {
     padding: 12px;
@@ -62,8 +62,34 @@ const AlbumDescContainer = styled.div`
   }
 
   p {
-    font-size: 24px;
+    font-size: 18px;
     line-height: 24px;
+
+    @media ${device.desktop} {
+      font-size: 24px;
+      line-height: 32px;
+    }
+
+    @media ${device.tabletL} {
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+
+  h4 {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 900;
+
+    @media ${device.desktop} {
+      font-size: 32px;
+      line-height: 32px;
+    }
+
+    @media ${device.tabletL} {
+      font-size: 32px;
+      line-height: 32px;
+    }
   }
 `;
 
@@ -88,7 +114,6 @@ const ColorPalette = styled.div`
 
 const Albums = ({ album }) => {
   const { likedAlbums, updateLikedAlbums } = useAppContext();
-  const [isLiked, updateLike] = useState(false);
 
   const [addToLike] = useMutation(ADD_TO_LIKE, {
     variables: { addToLikeId: album.id },
@@ -99,15 +124,13 @@ const Albums = ({ album }) => {
   });
 
   const handleLike = () => {
-    if (!isLiked) {
-      if (!likedAlbums.includes(album)) updateLikedAlbums([...likedAlbums, album]);
+    if (!likedAlbums?.some((al) => al.id === album.id)) {
+      updateLikedAlbums([...likedAlbums, album]);
       addToLike();
-      updateLike((prevState) => !prevState);
     } else {
       if (likedAlbums?.some((al) => al.id === album.id))
         updateLikedAlbums(likedAlbums.filter((al) => al.id !== album.id));
       removeFromLike();
-      updateLike((prevState) => !prevState);
     }
   };
 
@@ -121,8 +144,8 @@ const Albums = ({ album }) => {
         </Link>
         <AlbumDescContainer>
           <div>
+            <h4>{album.title}</h4>
             <p>{album.artist.name}</p>
-            <p>{album.title}</p>
           </div>
 
           <Likes>

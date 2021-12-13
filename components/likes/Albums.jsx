@@ -8,6 +8,24 @@ import ColorBox from '../albums/ColorBox';
 import { useAppContext } from '../../context/state';
 import device from '../common/MediaQueries';
 
+const ADD_TO_LIKE = gql`
+  mutation Mutation($addToLikeId: ID!) {
+    addToLike(id: $addToLikeId) {
+      likeCount
+      id
+    }
+  }
+`;
+
+const REMOVE_FROM_LIKE = gql`
+  mutation Mutation($removeFromLikeId: ID!) {
+    removeFromLike(id: $removeFromLikeId) {
+      likeCount
+      id
+    }
+  }
+`;
+
 const Card = styled.div`
   border-right: 8px solid black;
   padding: 24px;
@@ -47,6 +65,13 @@ const AlbumDescContainer = styled.div`
     line-height: 24px;
   }
 `;
+const Likes = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+`;
 
 const ColorPalette = styled.div`
   display: grid;
@@ -59,27 +84,56 @@ const ColorPalette = styled.div`
   }
 `;
 
-const Albums = ({ album }) => (
-  <>
-    <Card>
-      <Link href={`/album/${album.id}`}>
-        <AlbumArt src={album.albumArt} />
-      </Link>
-      <AlbumDescContainer>
-        <div>
-          <p>{album.artist.name}</p>
-          <p>{album.title}</p>
-        </div>
-      </AlbumDescContainer>
+const Albums = ({ album }) => {
+  const { likedAlbums, updateLikedAlbums } = useAppContext();
 
-      <ColorPalette>
-        {album.colors.map((color) => (
-          <ColorBox color={color} key={color} bg={color} />
-        ))}
-      </ColorPalette>
-    </Card>
-  </>
-);
+  const [addToLike] = useMutation(ADD_TO_LIKE, {
+    variables: { addToLikeId: album.id },
+  });
+
+  const [removeFromLike] = useMutation(REMOVE_FROM_LIKE, {
+    variables: { removeFromLikeId: album.id },
+  });
+
+  const handleLike = () => {
+    if (!likedAlbums?.some((al) => al.id === album.id)) {
+      updateLikedAlbums([...likedAlbums, album]);
+      addToLike();
+    } else {
+      if (likedAlbums?.some((al) => al.id === album.id))
+        updateLikedAlbums(likedAlbums.filter((al) => al.id !== album.id));
+      removeFromLike();
+    }
+  };
+
+  const liked = likedAlbums.some((al) => al.id === album.id) ? 'red' : 'black';
+
+  return (
+    <>
+      <Card>
+        <Link href={`/album/${album.id}`}>
+          <AlbumArt src={album.albumArt} />
+        </Link>
+        <AlbumDescContainer>
+          <div>
+            <p>{album.artist.name}</p>
+            <p>{album.title}</p>
+          </div>
+
+          <Likes>
+            <BsSuitHeartFill onClick={handleLike} style={{ fontSize: '32px', color: liked }} />
+          </Likes>
+        </AlbumDescContainer>
+
+        <ColorPalette>
+          {album.colors.map((color) => (
+            <ColorBox color={color} key={color} bg={color} />
+          ))}
+        </ColorPalette>
+      </Card>
+    </>
+  );
+};
 
 export default Albums;
 

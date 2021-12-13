@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-
 import React, { useState, useEffect } from 'react';
+import device from '../common/MediaQueries';
 
 const Box = styled.div`
   width: 100%;
@@ -12,10 +12,20 @@ const Box = styled.div`
     filter: brightness(150%);
   }
 
+  @media ${device.tablet} {
+    aspect-ratio: 2/1;
+  }
+
+  @media ${device.mobile} {
+    scroll-snap-align: center;
+    flex: 0 0 auto;
+    width: 200px;
+    aspect-ratio: 1/1;
+  }
+
   p {
-    color: white;
-    background-color: black;
-    padding: 8px;
+    color: var(--bg);
+    background-color: var(--text);
     text-align: center;
     font-size: 24px;
   }
