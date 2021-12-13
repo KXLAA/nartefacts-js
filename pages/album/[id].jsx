@@ -7,6 +7,7 @@ import Head from 'next/head';
 import { Header } from '../../components/album/Header';
 import { MainLayout } from '../../components/common/Layout';
 import Album from '../../components/album/Album';
+import Loading from '../../components/common/Loading';
 
 const GET_ALBUM_FOR_PAGE = gql`
   query AlbumForPage($albumForPageId: ID!) {
@@ -39,7 +40,7 @@ export default function AlbumDetail({ albumForPageId }) {
     skip: !router.isReady,
   });
 
-  if (loading) return <p>Loading....</p>;
+  if (loading) return <Loading />;
   if (error) return <p>Ooops, something went wrong {error.message}</p>;
 
   return (

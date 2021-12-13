@@ -4,7 +4,7 @@ import { gql, useQuery } from '@apollo/client';
 import { MainLayout, HomePageGrid } from '../components/common/Layout';
 import { Header } from '../components/albums/Header';
 import Albums from '../components/albums/Albums';
-import Loader from '../components/albums/Loader';
+import Loading from '../components/common/Loading';
 
 const GET_ALBUM_LIST_FOR_HOME = gql`
   query AlbumForPage {
@@ -14,7 +14,6 @@ const GET_ALBUM_LIST_FOR_HOME = gql`
       title
       artist {
         name
-        photoURL
       }
       albumArt
       urls {
@@ -29,7 +28,7 @@ const GET_ALBUM_LIST_FOR_HOME = gql`
 
 export default function Home() {
   const { data, error, loading } = useQuery(GET_ALBUM_LIST_FOR_HOME);
-  if (loading) return <Loader />;
+  if (loading) return <Loading />;
   if (error) return <p>Ooops, something went wrong {error.message}</p>;
 
   return (
