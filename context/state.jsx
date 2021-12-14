@@ -22,7 +22,11 @@ export function AppWrapper({ children }) {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      localStorage.setItem('album', JSON.stringify(likedAlbums));
+      try {
+        localStorage.setItem('album', JSON.stringify(likedAlbums));
+      } catch (error) {
+        console.log(error);
+      }
     }
   }, [likedAlbums]);
 

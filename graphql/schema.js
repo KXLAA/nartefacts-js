@@ -27,19 +27,19 @@ const typeDefs = gql`
     apple: String
   }
   input AddAlbum {
-    title: String!
-    artist: ArtistInput!
+    title: String
+    artist: ArtistInput
     type: String
-    albumArt: String!
-    urls: urlInput!
-    colors: [String!]!
+    albumArt: String
+    urls: UrlInput
+    colors: [String]
     likeCount: Int
   }
   input ArtistInput {
-    name: String!
-    photoURL: String!
+    name: String
+    photoURL: String
   }
-  input urlInput {
+  input UrlInput {
     spotify: String
     apple: String
   }
