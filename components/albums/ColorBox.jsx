@@ -1,5 +1,8 @@
+/* eslint-disable import/no-named-as-default */
+/* eslint-disable no-undef */
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import device from '../common/MediaQueries';
 
 const Box = styled.div`
@@ -45,3 +48,7 @@ const ColorBox = ({ color }) => {
 };
 
 export default ColorBox;
+
+ColorBox.propTypes = {
+  color: PropTypes.string.isRequired,
+};

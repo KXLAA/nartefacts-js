@@ -7,3 +7,60 @@ body {
   font-family: 'Inter', sans-serif;
   font-weight: 900;
 }
+
+a {
+  color: inherit;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translatey(0);
+  }
+}
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-background {
+  animation: gradient-animation 30s ease infinite;
+}
+
+.fade-in {
+  animation: fade-in 0.2s ease-in-out;
+}
+
+.item-animation {
+  animation: slide-in 0.3s ease-in-out;
+}
+
+.nextImg {
+  cursor: pointer;
+  transition: all 0.5s ease;
+
+  &:hover {
+    filter: grayscale(100%) !important;
+  }
+}

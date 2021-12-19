@@ -8,6 +8,8 @@ import { Header } from '../../components/album/Header';
 import { MainLayout } from '../../components/common/Layout';
 import Album from '../../components/album/Album';
 import Loading from '../../components/common/Loading';
+import Error from '../../components/common/Error';
+import Footer from '../../components/common/Footer';
 
 const GET_ALBUM_FOR_PAGE = gql`
   query AlbumForPage($albumForPageId: ID!) {
@@ -41,7 +43,7 @@ export default function AlbumDetail({ albumForPageId }) {
   });
 
   if (loading) return <Loading />;
-  if (error) return <p>Ooops, something went wrong {error.message}</p>;
+  if (error) return <Error message={error.message} />;
 
   return (
     <MainLayout>
@@ -57,9 +59,10 @@ export default function AlbumDetail({ albumForPageId }) {
       </Head>
       <Header />
 
-      <main>
+      <main className="item-animation">
         <Album album={data?.albumForPage} />
       </main>
+      <Footer />
     </MainLayout>
   );
 }

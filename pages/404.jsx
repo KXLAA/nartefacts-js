@@ -2,8 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import PropTypes from 'prop-types';
-import device from './MediaQueries';
+import device from '../components/common/MediaQueries';
 
 const Container = styled.div`
   display: flex;
@@ -31,22 +30,17 @@ const ErrorContainer = styled.div`
   width: 100%;
 `;
 
-export default function Error({ message }) {
+export default function Custom404() {
   return (
-    <Container>
+    <Container className="item-animation">
       <ErrorContainer>
-        <h1> SOMETHING WENT WRONG </h1>
+        <h1> THIS PAGE IS MISSING</h1>
       </ErrorContainer>
       <ErrorContainer>
-        <h1>ERROR : {message?.toUpperCase()}</h1>
+        <h1>
+          HEAD BACK <Link href="/">HOME ? </Link>
+        </h1>
       </ErrorContainer>
     </Container>
   );
 }
-
-Error.propTypes = {
-  message: PropTypes.string,
-};
-Error.defaultProps = {
-  message: null,
-};

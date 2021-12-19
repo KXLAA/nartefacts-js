@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 import device from './MediaQueries';
 
-export const MainLayout = styled.section`
+export const MainLayout = styled.div`
   width: 100%;
   padding: 16px;
   margin: 0 auto;

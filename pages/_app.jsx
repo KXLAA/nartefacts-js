@@ -4,7 +4,6 @@ import '../styles/globals.scss';
 import { createGlobalStyle } from 'styled-components';
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
-import { ThemeProvider } from 'next-themes';
 import apolloClient from '../lib/apollo';
 import { AppWrapper } from '../context/state';
 

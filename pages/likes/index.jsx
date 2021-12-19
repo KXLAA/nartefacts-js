@@ -12,7 +12,7 @@ const Favorites = () => {
     <MainLayout>
       <Header />
       {likedAlbums?.length >= 1 ? (
-        <HomePageGrid>
+        <HomePageGrid className="item-animation">
           {likedAlbums?.map((album) => (
             <Albums key={album.id} album={album} />
           ))}

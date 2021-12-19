@@ -1,8 +1,10 @@
+/* eslint-disable import/no-named-as-default */
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { BsSuitHeartFill } from 'react-icons/bs';
 import { gql, useMutation } from '@apollo/client';
+import Image from 'next/image';
 import { Button } from '../common/Ui';
 import ColorBox from './ColorBox';
 import device from '../common/MediaQueries';
@@ -53,7 +55,7 @@ const AlbumContainer = styled.section`
   }
 `;
 
-const Image = styled.img`
+const AlbumImage = styled.img`
   width: 50%;
 
   @media ${device.tablet} {
@@ -221,7 +223,7 @@ const Album = ({ album }) => {
   return (
     <Container>
       <AlbumContainer>
-        <Image src={album?.albumArt} alt="Picture of the author" />
+        <AlbumImage src={album?.albumArt} alt={album?.title} />
         <ColorPalette>
           {album?.colors?.map((color) => (
             <ColorBox key={color} color={color} />

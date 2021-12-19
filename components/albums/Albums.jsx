@@ -1,5 +1,6 @@
 /* eslint-disable import/no-named-as-default */
-import React, { useState } from 'react';
+import React from 'react';
+import Image from 'next/image';
 import styled from 'styled-components';
 import { BsSuitHeartFill } from 'react-icons/bs';
 import Link from 'next/link';
@@ -40,16 +41,6 @@ const Card = styled.div`
   }
 `;
 
-const AlbumArt = styled.img`
-  width: 100%;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    filter: brightness(20%);
-  }
-`;
-
 const AlbumDescContainer = styled.div`
   padding-bottom: 16px;
   display: flex;
@@ -64,6 +55,11 @@ const AlbumDescContainer = styled.div`
   p {
     font-size: 18px;
     line-height: 24px;
+
+    @media ${device.laptop} {
+      font-size: 18px;
+      line-height: 24px;
+    }
 
     @media ${device.desktop} {
       font-size: 24px;
@@ -140,7 +136,16 @@ const Albums = ({ album }) => {
     <>
       <Card>
         <Link href={`/album/${album.id}`}>
-          <AlbumArt src={album.albumArt} />
+          <Image
+            className="nextImg"
+            width={1500}
+            height={1500}
+            alt={album.title}
+            src={album.albumArt}
+            layout="responsive"
+            placeholder="blur"
+            blurDataURL
+          />
         </Link>
         <AlbumDescContainer>
           <div>
