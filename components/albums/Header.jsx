@@ -1,8 +1,8 @@
 /* eslint-disable import/no-named-as-default */
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import { Button, ButtonContainer, Toggle } from '../common/Ui';
+import { Button, ButtonContainer } from '../common/Ui';
 import { useAppContext } from '../../context/state';
 import device from '../common/MediaQueries';
 

@@ -1,7 +1,6 @@
 /* eslint-disable import/no-named-as-default */
 import React from 'react';
 import styled from 'styled-components';
-import Link from 'next/link';
 import PropTypes from 'prop-types';
 import device from './MediaQueries';
 

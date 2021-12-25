@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable import/no-named-as-default */
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';

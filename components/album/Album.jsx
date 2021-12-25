@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { BsSuitHeartFill } from 'react-icons/bs';
 import { gql, useMutation } from '@apollo/client';
-import Image from 'next/image';
 import { Button } from '../common/Ui';
 import ColorBox from './ColorBox';
 import device from '../common/MediaQueries';
