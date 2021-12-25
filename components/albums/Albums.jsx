@@ -3,7 +3,6 @@ import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { BsSuitHeartFill } from 'react-icons/bs';
-import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { gql, useMutation } from '@apollo/client';
 import ColorBox from './ColorBox';
@@ -135,7 +134,7 @@ const Albums = ({ album }) => {
   return (
     <>
       <Card>
-        <Link href={`/album/${album.id}`}>
+        <>
           <Image
             className="nextImg"
             width={1500}
@@ -146,7 +145,7 @@ const Albums = ({ album }) => {
             placeholder="blur"
             blurDataURL
           />
-        </Link>
+        </>
         <AlbumDescContainer>
           <div>
             <h4>{album.title}</h4>

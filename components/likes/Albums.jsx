@@ -72,7 +72,17 @@ const ColorPalette = styled.div`
 
   @media ${device.mobile} {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 8px;
+    overflow-x: auto;
+    scroll-snap-type: x;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    transition: all 0.3s ease;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;
 
@@ -103,7 +113,7 @@ const Albums = ({ album }) => {
   return (
     <>
       <Card>
-        <Link href={`/album/${album.id}`}>
+        <>
           <Image
             className="nextImg"
             width={1500}
@@ -114,7 +124,7 @@ const Albums = ({ album }) => {
             placeholder="blur"
             blurDataURL
           />
-        </Link>
+        </>
         <AlbumDescContainer>
           <div>
             <p>{album.artist.name}</p>
