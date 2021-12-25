@@ -14,9 +14,9 @@ const Loading = () => (
     <Loader
       type="ThreeDots"
       color="#000000"
-      height={500}
-      width={500}
-      timeout={1000} // 3 secs
+      height={300}
+      width={300}
+      timeout={3000} // 3 secs
     />
   </Container>
 );

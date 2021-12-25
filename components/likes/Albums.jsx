@@ -3,7 +3,6 @@ import React from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { BsSuitHeartFill } from 'react-icons/bs';
-import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { gql, useMutation } from '@apollo/client';
 import ColorBox from '../albums/ColorBox';
@@ -53,8 +52,47 @@ const AlbumDescContainer = styled.div`
   }
 
   p {
-    font-size: 24px;
-    line-height: 24px;
+    font-size: 18px;
+    @media ${device.laptop} {
+      font-size: 18px;
+    }
+
+    @media ${device.desktop} {
+      font-size: 24px;
+    }
+
+    @media ${device.tabletL} {
+      font-size: 24px;
+    }
+
+    @media ${device.mobile} {
+      font-size: 18px;
+    }
+
+    @media ${device.mobileXS} {
+      font-size: 15px;
+    }
+  }
+
+  h4 {
+    font-size: 20px;
+    font-weight: 900;
+
+    @media ${device.desktop} {
+      font-size: 32px;
+    }
+
+    @media ${device.tabletL} {
+      font-size: 32px;
+    }
+
+    @media ${device.mobile} {
+      font-size: 24px;
+    }
+
+    @media ${device.mobileXS} {
+      font-size: 18px;
+    }
   }
 `;
 const Likes = styled.div`

@@ -37,29 +37,8 @@ export const Button = styled.a`
 
   @media ${device.mobile} {
     border-width: 6px;
-    font-size: 48px;
+    font-size: 24px;
     line-height: 1.5;
     padding: 8px 16px;
-  }
-`;
-
-export const Toggle = styled.div`
-  border: 8px solid;
-  border-radius: 100%;
-  width: 150px;
-  height: 150px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-
-  &:hover {
-    background: black;
-    background-color: var(--text);
-    color: var(--bg);
-    border-color: var(--text);
-    transform: translateX(0rem) translateY(-0.3125rem);
-  }
-
-  &:active {
-    transform: translateX(0rem) translateY(0.125rem);
   }
 `;

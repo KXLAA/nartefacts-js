@@ -15,7 +15,7 @@ const Logo = styled.img`
 
   @media ${device.mobile} {
     border-width: 6px;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
   }
 `;
 
@@ -81,6 +81,10 @@ const Counter = styled.div`
 const Container = styled(ButtonContainer)`
   @media ${device.tablet} {
     justify-content: center;
+  }
+
+  @media ${device.mobile} {
+    padding-bottom: 0;
   }
 `;
 

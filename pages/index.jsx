@@ -33,8 +33,6 @@ export default function Home() {
   if (loading) return <Loading />;
   if (error) return <Error message={error.message} />;
 
-  console.log(data.albumListForHome.length);
-
   return (
     <MainLayout>
       <Head>

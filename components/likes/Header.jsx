@@ -13,7 +13,7 @@ const Logo = styled.img`
   cursor: pointer;
 
   @media ${device.mobile} {
-    margin-bottom: 32px;
+    margin-bottom: 16px;
     border-width: 6px;
   }
 `;
@@ -35,7 +35,7 @@ const LikesTxt = styled.div`
 
   @media ${device.mobile} {
     border-width: 6px;
-    font-size: 48px;
+    font-size: 24px;
     line-height: 1.5;
     padding: 8px 16px;
   }
@@ -46,6 +46,11 @@ const Container = styled(ButtonContainer)`
 
   @media ${device.tablet} {
     flex-direction: column;
+  }
+
+  @media ${device.mobile} {
+    gap: 16px;
+    padding: 0;
   }
 `;
 

@@ -13,7 +13,10 @@ const Box = styled.div`
   transition: all 0.3s ease;
 
   @media ${device.mobile} {
-    aspect-ratio: 3/1;
+    scroll-snap-align: center;
+    flex: 0 0 auto;
+    width: 200px;
+    aspect-ratio: 1/1;
   }
 
   p {

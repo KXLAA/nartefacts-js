@@ -53,39 +53,52 @@ const AlbumDescContainer = styled.div`
 
   p {
     font-size: 18px;
-    line-height: 24px;
-
     @media ${device.laptop} {
       font-size: 18px;
-      line-height: 24px;
     }
 
     @media ${device.desktop} {
       font-size: 24px;
-      line-height: 32px;
     }
 
     @media ${device.tabletL} {
       font-size: 24px;
-      line-height: 32px;
+    }
+
+    @media ${device.mobile} {
+      font-size: 18px;
+    }
+
+    @media ${device.mobileXS} {
+      font-size: 15px;
     }
   }
 
   h4 {
     font-size: 20px;
-    line-height: 24px;
     font-weight: 900;
 
     @media ${device.desktop} {
       font-size: 32px;
-      line-height: 32px;
     }
 
     @media ${device.tabletL} {
       font-size: 32px;
-      line-height: 32px;
+    }
+
+    @media ${device.mobile} {
+      font-size: 24px;
+    }
+
+    @media ${device.mobileXS} {
+      font-size: 18px;
     }
   }
+`;
+
+const Heart = styled(BsSuitHeartFill)`
+  width: 24px;
+  height: 24px;
 `;
 
 const Likes = styled.div`
@@ -94,6 +107,24 @@ const Likes = styled.div`
   align-items: center;
   gap: 16px;
   cursor: pointer;
+  font-size: 24px;
+
+  @media ${device.mobileS} {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 24px;
+
+    @media ${device.mobileS} {
+      font-size: 18px;
+    }
+  }
+
+  @media ${device.mobileS} {
+    flex-direction: column;
+    gap: 8px;
+  }
 `;
 
 const ColorPalette = styled.div`
@@ -103,7 +134,16 @@ const ColorPalette = styled.div`
 
   @media ${device.mobile} {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 8px;
+    overflow-x: auto;
+    scroll-snap-type: x;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;
 
@@ -153,7 +193,7 @@ const Albums = ({ album }) => {
           </div>
 
           <Likes>
-            <BsSuitHeartFill onClick={handleLike} style={{ fontSize: '32px', color: liked }} />
+            <Heart onClick={handleLike} style={{ color: liked }} />
             <p>{album.likeCount}</p>
           </Likes>
         </AlbumDescContainer>
