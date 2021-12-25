@@ -41,16 +41,9 @@ const Description = styled.div`
   line-height: 56px;
   width: 100%;
   max-width: 560px;
+  margin-bottom: 24px;
 
   @media ${device.tablet} {
-    width: 100%;
-    max-width: 100%;
-    text-align: center;
-    font-size: 36px;
-    padding-bottom: 24px;
-  }
-
-  @media ${device.mobile} {
     display: none;
   }
 `;
