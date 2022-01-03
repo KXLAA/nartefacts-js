@@ -1,4 +1,15 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## nartefacts
+
+<p align="center">
+  <img src="https://ucarecdn.com/a85db1c9-4652-485e-b507-41997a7106e9/frontendcardio.webp" alt="Front End Cardio">
+</p>
+[nartefacts](https://www.nartefacts.com/) is a website that curates colour palettes extracted from beautiful album covers of African musicians. The dominant colours on the covers are extracted using [colour-thief](https://www.npmjs.com/package/color-thief) an npm package.
+
+The project serves two aims, firstly to provide colour inspiration for developers and designers & secondly for visitors of the site to discover new music.
+
+The site is built with[Next.js](https://nextjs.org/) and javascript on the front end and styled with [Styled-Components](https://styled-components.com/). Users can like and unlike palettes and their liked palettes are saved to local storage.
+
+On the backend is a [MongoDB](https://www.mongodb.com/) database used to store the data. I used a [GraphQL](https://graphql.org/) API to link the database to the front-end. The GraphQL API handles queries & the like and unlike feature as the like count is persisted in the database. An [Apollo](https://www.apollographql.com/) server facilitates the connection between the client and the database. Additionally, on the client, I used Apollo client for caching & as a GraphQL client.
 
 ## Getting Started
 
