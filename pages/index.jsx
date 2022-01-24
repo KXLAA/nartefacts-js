@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { MainLayout, HomePageGrid } from '../components/common/Layout';
@@ -29,20 +30,24 @@ const GET_ALBUM_LIST_FOR_HOME = gql`
 
 export default function Home() {
   const { data, error, loading } = useQuery(GET_ALBUM_LIST_FOR_HOME);
-  if (loading) return <Loading />;
   if (error) return <Error message={error.message} />;
 
   return (
     <MainLayout>
       <Header />
 
-      <main>
-        <HomePageGrid className="item-animation">
-          {data?.albumListForHome?.map((album) => (
-            <Albums key={album.id} album={album} />
-          ))}
-        </HomePageGrid>
-      </main>
+      {loading ? (
+        <Loading />
+      ) : (
+        <main>
+          <HomePageGrid className="item-animation">
+            {data?.albumListForHome?.map((album) => (
+              <Albums key={album.id} album={album} />
+            ))}
+          </HomePageGrid>
+        </main>
+      )}
+
       <Footer />
     </MainLayout>
   );
