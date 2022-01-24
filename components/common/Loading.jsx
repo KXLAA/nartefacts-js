@@ -3,7 +3,7 @@ import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
 
 const Container = styled.section`
-  min-height: 100vh;
+  min-height: 40vh;
   display: flex;
   justify-content: center;
   align-items: center;

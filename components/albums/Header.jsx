@@ -37,7 +37,7 @@ const Description = styled.div`
   background-size: 540% 540%;
   color: #f6f3f3;
   padding: 24px;
-  font-size: 32px;
+  font-size: 24px;
   line-height: 56px;
   width: 100%;
   max-width: 560px;
@@ -97,16 +97,17 @@ export const Header = () => {
         <h1>COLORS INSPIRED BY AFRICAN MUSIC.</h1>
       </Description>
 
-      <Container>
-        {likedAlbums?.length >= 1 && (
+      {likedAlbums?.length >= 1 ? (
+        <Container>
           <Counter>
             <p>{likedAlbums?.length}</p>
           </Counter>
-        )}
-        <Link href="/likes">
-          <Button>YOUR LIKES</Button>
-        </Link>
-      </Container>
+
+          <Link href="/likes">
+            <Button>YOUR LIKES</Button>
+          </Link>
+        </Container>
+      ) : null}
     </header>
   );
 };
