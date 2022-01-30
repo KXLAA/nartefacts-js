@@ -1,7 +1,7 @@
 const resolvers = {
   Query: {
     albumListForHome: async (_, __, { Album }) => {
-      const albumList = await Album.find({});
+      const albumList = await Album.find({}).sort({ title: -1 });
       return albumList;
     },
     albumForPage: async (_, args, { Album }) => {
