@@ -21,6 +21,7 @@ export function AppWrapper({ children }) {
   const [likedAlbums, updateLikedAlbums] = useState(getLocalStorage());
 
   useEffect(() => {
+    console.log('rendered');
     if (typeof window !== 'undefined') {
       try {
         localStorage.setItem('album', JSON.stringify(likedAlbums));
@@ -29,6 +30,8 @@ export function AppWrapper({ children }) {
       }
     }
   }, [likedAlbums]);
+
+  console.log(likedAlbums);
 
   const sharedState = {
     likedAlbums: likedAlbums,
