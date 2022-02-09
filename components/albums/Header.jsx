@@ -97,17 +97,15 @@ export const Header = () => {
         <h1>COLORS INSPIRED BY AFRICAN MUSIC.</h1>
       </Description>
 
-      {likedAlbums?.length >= 1 ? (
-        <Container>
-          <Counter>
-            <p>{likedAlbums?.length}</p>
-          </Counter>
+      <Container>
+        <Counter>
+          <p>{likedAlbums?.length}</p>
+        </Counter>
 
-          <Link href="/likes">
-            <Button>YOUR LIKES</Button>
-          </Link>
-        </Container>
-      ) : null}
+        <Link href="/likes">
+          <Button>YOUR LIKES</Button>
+        </Link>
+      </Container>
     </header>
   );
 };
