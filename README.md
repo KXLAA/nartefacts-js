@@ -4,6 +4,8 @@
   <img src="https://ucarecdn.com/1a22b3ae-1ba9-4540-8683-de5262b74038/nartefacts.webp" alt="Front End Cardio">
 </p>
 
+## I'm currently rewriting this application, you can check out my progress [here](https://github.com/KXLAA/nartefacts)
+
 [nartefacts](https://www.nartefacts.com/) is a website that curates colour palettes extracted from beautiful album covers of African musicians. The dominant colours on the covers are extracted using [colour-thief](https://www.npmjs.com/package/color-thief) an npm package.
 
 The project serves two aims, firstly to provide colour inspiration for developers and designers & secondly for visitors of the site to discover new music.
